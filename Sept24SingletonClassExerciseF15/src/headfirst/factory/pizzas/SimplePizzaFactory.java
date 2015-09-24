@@ -1,6 +1,21 @@
 package headfirst.factory.pizzas;
 
 public class SimplePizzaFactory {
+	private static SimplePizzaFactory instance;
+	
+	private SimplePizzaFactory(){
+		//nothing
+	}
+	public static SimplePizzaFactory getInstance(){
+		if(instance == null){
+			synchronized (SimplePizzaFactory.class){
+				if(instance == null){
+					instance = new SimplePizzaFactory();
+				}
+			}
+		}
+		return instance;
+	}
 
   public Pizza createPizza(String type) {
     Pizza pizza = null;
